@@ -16,7 +16,6 @@ BuildRequires:  python-devel
 #Source2:        setup.py
 #Patch:          %{tarname}-%{version}.patch
 #Patch1:         %{tarname}-%{version}-dl.patch
-BuildRoot:      %{_tmppath}/%{name}-%{version}
 
 %description
 This release supports the core PAM API. There is still some missing
