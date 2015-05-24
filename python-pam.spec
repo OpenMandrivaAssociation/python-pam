@@ -1,7 +1,7 @@
 %define module  pam
 %define name    python-%{module}
 %define version 0.5.0
-%define release %mkrel 6
+%define release 1
 
 Name: 		    %{name}
 Version: 	    %{version}
@@ -10,12 +10,9 @@ Summary:        Python bindings for PAM
 License:        GPL
 Group:          Development/Python
 URL:            http://www.pangalactic.org/PyPAM
-Source:         PyPAM-%{version}.tar.bz2
+Source:         PyPAM-%{version}.tar.gz
 BuildRequires:  pam-devel
-BuildRequires:  python-devel
-#Source2:        setup.py
-#Patch:          %{tarname}-%{version}.patch
-#Patch1:         %{tarname}-%{version}-dl.patch
+BuildRequires:  python2-devel
 BuildRoot:      %{_tmppath}/%{name}-%{version}
 
 %description
@@ -27,17 +24,15 @@ should get you going.
 
 %prep
 %setup -q -n PyPAM-%{version}
-#cp %{S:2} .
-#%patch
-#%patch1
 rm examples/pamexample
 
 %build
 export CFLAGS="$RPM_OPT_FLAGS" 
-python setup.py build
+export LDFLAGS='-ldl'
+python2 setup.py build
 
 %install
-python setup.py install --prefix=%{_prefix} --root=%{buildroot}
+python2 setup.py install --prefix=%{_prefix} --root=%{buildroot}
 
 %clean
 rm -rf %{buildroot}
@@ -45,5 +40,5 @@ rm -rf %{buildroot}
 %files
 %defattr(-,root,root)
 %doc AUTHORS NEWS README ChangeLog COPYING examples
-%{_libdir}/python%{pyver}/site-packages/*
+%{_libdir}/python%{py2_ver}/site-packages/*
 
