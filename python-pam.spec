@@ -3,6 +3,10 @@
 %define version 0.5.0
 %define release 1
 
+%if %mdvver < 201500
+%define py2_ver %py_ver
+%endif
+
 Name: 		    %{name}
 Version: 	    %{version}
 Release: 	    %{release}
@@ -12,7 +16,7 @@ Group:          Development/Python
 URL:            http://www.pangalactic.org/PyPAM
 Source:         PyPAM-%{version}.tar.gz
 BuildRequires:  pam-devel
-BuildRequires:  python2-devel
+BuildRequires:  pkgconfig(python2)
 BuildRoot:      %{_tmppath}/%{name}-%{version}
 
 %description
