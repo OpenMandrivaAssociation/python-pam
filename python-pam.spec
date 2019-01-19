@@ -1,23 +1,14 @@
-%define module  pam
-%define name    python-%{module}
-%define version 0.5.0
-%define release 1
-
-%if %mdvver < 201500
-%define py2_ver %py_ver
-%endif
-
-Name: 		    %{name}
-Version: 	    %{version}
-Release: 	    %{release}
+Name: 		    python-pam
+Version: 	    1.8.4
+Release: 	    1
 Summary:        Python bindings for PAM
 License:        GPL
 Group:          Development/Python
-URL:            http://www.pangalactic.org/PyPAM
-Source:         PyPAM-%{version}.tar.gz
+BuildArch:	noarch
+URL:            https://github.com/FirefighterBlu3/python-pam
+Source0:        https://pypi.python.org/packages/source/p/%{name}/%{name}-%{version}.tar.gz
 BuildRequires:  pam-devel
-BuildRequires:  pkgconfig(python2)
-BuildRoot:      %{_tmppath}/%{name}-%{version}
+BuildRequires:  pkgconfig(python3)
 
 %description
 This release supports the core PAM API. There is still some missing
@@ -27,8 +18,7 @@ you are familiar with the PAM API, a quick glance at the sample program
 should get you going.
 
 %prep
-%setup -q -n PyPAM-%{version}
-rm examples/pamexample
+%setup -q
 
 %build
 export CFLAGS="$RPM_OPT_FLAGS" 
@@ -36,13 +26,9 @@ export LDFLAGS='-ldl'
 python2 setup.py build
 
 %install
-python2 setup.py install --prefix=%{_prefix} --root=%{buildroot}
-
-%clean
-rm -rf %{buildroot}
+python setup.py install --prefix=%{_prefix} --root=%{buildroot}
 
 %files
-%defattr(-,root,root)
-%doc AUTHORS NEWS README ChangeLog COPYING examples
-%{_libdir}/python%{py2_ver}/site-packages/*
+%doc LICENSE README.md
+%{python3_sitelib}/*
 
