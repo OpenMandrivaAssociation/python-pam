@@ -24,7 +24,7 @@ should get you going.
 %build
 export CFLAGS="$RPM_OPT_FLAGS" 
 export LDFLAGS='-ldl'
-python2 setup.py build
+python setup.py build
 
 %install
 python setup.py install --prefix=%{_prefix} --root=%{buildroot}
