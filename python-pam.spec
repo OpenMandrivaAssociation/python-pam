@@ -8,7 +8,7 @@ BuildArch:	noarch
 URL:            https://github.com/FirefighterBlu3/python-pam
 Source0:        https://pypi.python.org/packages/source/p/%{name}/%{name}-%{version}.tar.gz
 BuildRequires:  pam-devel
-BuildRequires:  pkgconfig(python3)
+BuildRequires:  pkgconfig(python)
 BuildRequires:	python3egg(setuptools)
 
 %description
@@ -31,5 +31,4 @@ python setup.py install --prefix=%{_prefix} --root=%{buildroot}
 
 %files
 %doc LICENSE README.md
-%{python3_sitelib}/*
-
+%{python_sitelib}/*
