@@ -1,6 +1,6 @@
 Name: 		    python-pam
 Version: 	    1.8.4
-Release: 	    3
+Release: 	    4
 Summary:        Python bindings for PAM
 License:        GPL
 Group:          Development/Python
