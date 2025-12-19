@@ -9,7 +9,7 @@ URL:            https://github.com/FirefighterBlu3/python-pam
 Source0:        https://pypi.python.org/packages/source/p/%{name}/%{name}-%{version}.tar.gz
 BuildRequires:  pam-devel
 BuildRequires:  pkgconfig(python)
-BuildRequires:	python3egg(setuptools)
+BuildRequires:	python%{pyver}dist(setuptools)
 
 %description
 This release supports the core PAM API. There is still some missing
